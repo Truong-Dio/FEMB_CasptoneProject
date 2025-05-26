@@ -1,4 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'signup_widget.dart' show SignupWidget;
 import 'package:flutter/material.dart';
 
@@ -22,49 +23,26 @@ class SignupModel extends FlutterFlowModel<SignupWidget> {
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
-  String? _textController2Validator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Full Name is required';
-    }
-
-    return null;
-  }
-
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode3;
   TextEditingController? textController3;
-  late bool passwordVisibility;
   String? Function(BuildContext, String?)? textController3Validator;
-  String? _textController3Validator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Please enter password';
-    }
-
-    return null;
-  }
-
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode4;
   TextEditingController? textController4;
   String? Function(BuildContext, String?)? textController4Validator;
-  String? _textController4Validator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'email is require';
-    }
+  bool isDataUploading = false;
+  FFUploadedFile uploadedLocalFile =
+      FFUploadedFile(bytes: Uint8List.fromList([]));
 
-    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
-      return 'Has to be a valid email address.';
-    }
-    return null;
-  }
+  // State field(s) for UploadPhott widget.
+  FocusNode? uploadPhottFocusNode;
+  TextEditingController? uploadPhottTextController;
+  String? Function(BuildContext, String?)? uploadPhottTextControllerValidator;
 
   @override
   void initState(BuildContext context) {
     textController1Validator = _textController1Validator;
-    textController2Validator = _textController2Validator;
-    passwordVisibility = false;
-    textController3Validator = _textController3Validator;
-    textController4Validator = _textController4Validator;
   }
 
   @override
@@ -80,5 +58,8 @@ class SignupModel extends FlutterFlowModel<SignupWidget> {
 
     textFieldFocusNode4?.dispose();
     textController4?.dispose();
+
+    uploadPhottFocusNode?.dispose();
+    uploadPhottTextController?.dispose();
   }
 }
