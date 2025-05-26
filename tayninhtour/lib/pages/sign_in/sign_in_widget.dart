@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -113,10 +114,7 @@ class _SignInWidgetState extends State<SignInWidget>
                     ).image,
                   ),
                   gradient: LinearGradient(
-                    colors: [
-                      Color(0x80ECCB1A),
-                      FlutterFlowTheme.of(context).tertiary
-                    ],
+                    colors: [Color(0x801ABAEC), Color(0xFF2D26E3)],
                     stops: [0.0, 1.0],
                     begin: AlignmentDirectional(0.87, -1.0),
                     end: AlignmentDirectional(-0.87, 1.0),
@@ -531,6 +529,9 @@ class _SignInWidgetState extends State<SignInWidget>
                                           password: _model
                                               .passwordTextController.text,
                                         );
+
+                                        context.pushNamed(
+                                            HomepageWidget.routeName);
 
                                         safeSetState(() {});
                                       },
