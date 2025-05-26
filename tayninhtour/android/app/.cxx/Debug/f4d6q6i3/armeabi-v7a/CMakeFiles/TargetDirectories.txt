@@ -1,0 +1,2 @@
+D:/su25/FEMB_CasptoneProject/tayninhtour/android/app/.cxx/Debug/f4d6q6i3/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/su25/FEMB_CasptoneProject/tayninhtour/android/app/.cxx/Debug/f4d6q6i3/armeabi-v7a/CMakeFiles/rebuild_cache.dir
