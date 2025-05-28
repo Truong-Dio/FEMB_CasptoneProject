@@ -64,9 +64,6 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                   decoration: BoxDecoration(
                     color: FlutterFlowTheme.of(context).secondaryBackground,
                     borderRadius: BorderRadius.circular(0.0),
-                    border: Border.all(
-                      color: FlutterFlowTheme.of(context).borderColor,
-                    ),
                   ),
                   child: Padding(
                     padding:
@@ -138,7 +135,6 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                                 width: 44.0,
                                 height: 44.0,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context).lightGray,
                                   shape: BoxShape.circle,
                                 ),
                                 child: ClipRRect(
@@ -703,7 +699,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                             20.0, 0.0, 20.0, 0.0),
                         child: Builder(
                           builder: (context) {
-                            final voucherLi = FFAppState().City.toList();
+                            final voucherLi = FFAppState().tour.toList();
 
                             return ListView.separated(
                               padding: EdgeInsets.fromLTRB(

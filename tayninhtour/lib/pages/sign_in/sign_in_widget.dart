@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -219,7 +220,7 @@ class _SignInWidgetState extends State<SignInWidget>
                                     style: FlutterFlowTheme.of(context)
                                         .displaySmall
                                         .override(
-                                          font: GoogleFonts.inter(
+                                          font: GoogleFonts.merriweather(
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .displaySmall
@@ -244,12 +245,12 @@ class _SignInWidgetState extends State<SignInWidget>
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 24.0),
                                     child: Text(
-                                      'Chỉ một bước nữa bạn sẽ được trải nghiệm hành trình thú vị tại Tây Ninh',
+                                      'Chỉ một bước nữa quý khách sẽ được trải nghiệm hành trình thú vị tại Tây Ninh',
                                       textAlign: TextAlign.center,
                                       style: FlutterFlowTheme.of(context)
                                           .labelLarge
                                           .override(
-                                            font: GoogleFonts.inter(
+                                            font: GoogleFonts.roboto(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .labelLarge
@@ -590,7 +591,7 @@ class _SignInWidgetState extends State<SignInWidget>
                                       style: FlutterFlowTheme.of(context)
                                           .labelLarge
                                           .override(
-                                            font: GoogleFonts.inter(
+                                            font: GoogleFonts.roboto(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .labelLarge
@@ -736,8 +737,6 @@ class _SignInWidgetState extends State<SignInWidget>
                                       ),
                                     ),
                                   ),
-
-                                  // You will have to add an action on this rich text to go to your login page.
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 12.0, 0.0, 12.0),
@@ -775,6 +774,13 @@ class _SignInWidgetState extends State<SignInWidget>
                                                           .bodyMedium
                                                           .fontStyle,
                                                 ),
+                                            mouseCursor:
+                                                SystemMouseCursors.click,
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = () async {
+                                                context.pushNamed(
+                                                    SignupWidget.routeName);
+                                              },
                                           )
                                         ],
                                         style: FlutterFlowTheme.of(context)

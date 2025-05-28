@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -260,7 +261,7 @@ class _SignupWidgetState extends State<SignupWidget>
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            font: GoogleFonts.inter(
+                                            font: GoogleFonts.roboto(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .labelMedium
@@ -363,7 +364,6 @@ class _SignupWidgetState extends State<SignupWidget>
                                                     .bodyMedium
                                                     .fontStyle,
                                           ),
-                                          fontSize: 17.0,
                                           letterSpacing: 0.0,
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
@@ -462,7 +462,7 @@ class _SignupWidgetState extends State<SignupWidget>
                                       hintStyle: FlutterFlowTheme.of(context)
                                           .labelMedium
                                           .override(
-                                            font: GoogleFonts.inter(
+                                            font: GoogleFonts.roboto(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .labelMedium
@@ -1293,8 +1293,28 @@ class _SignupWidgetState extends State<SignupWidget>
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 48.0, 0.0, 0.0),
                               child: FFButtonWidget(
-                                onPressed: () {
-                                  print('Button pressed ...');
+                                onPressed: () async {
+                                  FFAppState().userFullName =
+                                      _model.textController1.text;
+                                  FFAppState().userPhone =
+                                      _model.textController2.text;
+                                  FFAppState().userEmail =
+                                      _model.textController4.text;
+                                  FFAppState().userPassword =
+                                      _model.textController3.text;
+                                  safeSetState(() {});
+                                  _model.apiResult19e =
+                                      await MemoryHotelApiGroup
+                                          .apiAuthenticationRegisterPOSTCall
+                                          .call(
+                                    email: _model.textController4.text,
+                                    password: _model.textController3.text,
+                                    name: _model.textController1.text,
+                                    phoneNumber: _model.textController2.text,
+                                    avatar: _model.uploadedLocalFile,
+                                  );
+
+                                  safeSetState(() {});
                                 },
                                 text: 'Hoàn tất đăng kí',
                                 options: FFButtonOptions(
