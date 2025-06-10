@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -7,6 +6,7 @@ import '/index.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'verification_o_t_p_model.dart';
 export 'verification_o_t_p_model.dart';
 
@@ -44,6 +44,8 @@ class _VerificationOTPWidgetState extends State<VerificationOTPWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -55,12 +57,6 @@ class _VerificationOTPWidgetState extends State<VerificationOTPWidget> {
           width: double.infinity,
           height: double.infinity,
           decoration: BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: Image.asset(
-                'assets/images/56fa568b0e3a5d72c5e8a95b84207622.jpg',
-              ).image,
-            ),
             gradient: LinearGradient(
               colors: [Color(0x801ABAEC), Color(0xFF2D26E3)],
               stops: [0.0, 1.0],
@@ -68,7 +64,7 @@ class _VerificationOTPWidgetState extends State<VerificationOTPWidget> {
               end: AlignmentDirectional(-0.87, 1.0),
             ),
           ),
-          alignment: AlignmentDirectional(0.0, -1.0),
+          alignment: AlignmentDirectional(0.0, 0.0),
           child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(25.0, 25.0, 25.0, 25.0),
             child: Container(
@@ -189,9 +185,6 @@ class _VerificationOTPWidgetState extends State<VerificationOTPWidget> {
                                   !_model.formKey.currentState!.validate()) {
                                 return;
                               }
-                              await MemoryHotelApiGroup
-                                  .apiAuthenticationVerifyOtpPOSTCall
-                                  .call();
 
                               context.pushNamed(SignInWidget.routeName);
                             },
@@ -311,7 +304,7 @@ class _VerificationOTPWidgetState extends State<VerificationOTPWidget> {
                                   type: PageTransitionType.fade,
                                   child: FlutterFlowExpandedImageView(
                                     image: Image.asset(
-                                      'assets/images/bg_signup_5.png',
+                                      'assets/images/TNDT_Logo.png',
                                       fit: BoxFit.contain,
                                       alignment: Alignment(0.0, -1.0),
                                     ),
@@ -328,7 +321,7 @@ class _VerificationOTPWidgetState extends State<VerificationOTPWidget> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(8.0),
                                 child: Image.asset(
-                                  'assets/images/bg_signup_5.png',
+                                  'assets/images/TNDT_Logo.png',
                                   width: 204.5,
                                   height: 515.8,
                                   fit: BoxFit.none,

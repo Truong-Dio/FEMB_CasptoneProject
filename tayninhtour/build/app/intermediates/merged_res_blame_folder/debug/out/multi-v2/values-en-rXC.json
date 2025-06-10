@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.mycompany.tayninhtour.app-mergeDebugResources-28:/values-en-rXC/values-en-rXC.xml",
+            "outputFile": "com.mycompany.tayninhtour.app-mergeDebugResources-29:/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
                     "source": "C:\\Users\\rosa\\.gradle\\caches\\transforms-3\\24eeed58524108752b7e3a642cdaac4b\\transformed\\browser-1.8.0\\res\\values-en-rXC\\values-en-rXC.xml",

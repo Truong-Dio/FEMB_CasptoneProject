@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.mycompany.tayninhtour.app-mergeDebugResources-28:/values-v21/values-v21.xml",
+            "outputFile": "com.mycompany.tayninhtour.app-mergeDebugResources-29:/values-v21/values-v21.xml",
             "map": [
                 {
                     "source": "C:\\Users\\rosa\\.gradle\\caches\\transforms-3\\74c1895ee15d4a639000e095e1132bc7\\transformed\\core-1.13.1\\res\\values-v21\\values-v21.xml",

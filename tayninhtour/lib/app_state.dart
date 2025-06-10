@@ -72,4 +72,10 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInTour(int index, String value) {
     tour.insert(index, value);
   }
+
+  String _photoUploaded = 'Uploaded successfully';
+  String get photoUploaded => _photoUploaded;
+  set photoUploaded(String value) {
+    _photoUploaded = value;
+  }
 }

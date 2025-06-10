@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -35,11 +34,10 @@ class _SignInWidgetState extends State<SignInWidget>
     super.initState();
     _model = createModel(context, () => SignInModel());
 
-    _model.emailAddressTextController ??=
-        TextEditingController(text: 'vui lòng nhập email');
+    _model.emailAddressTextController ??= TextEditingController();
     _model.emailAddressFocusNode ??= FocusNode();
 
-    _model.passwordTextController ??= TextEditingController(text: '11111111');
+    _model.passwordTextController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
 
     animationsMap.addAll({
@@ -285,7 +283,7 @@ class _SignInWidgetState extends State<SignInWidget>
                                         autofillHints: [AutofillHints.email],
                                         obscureText: false,
                                         decoration: InputDecoration(
-                                          labelText: 'Email',
+                                          labelText: 'vui lòng nhập email',
                                           labelStyle: FlutterFlowTheme.of(
                                                   context)
                                               .labelLarge
@@ -521,20 +519,8 @@ class _SignInWidgetState extends State<SignInWidget>
                                         0.0, 0.0, 0.0, 16.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        _model.apiResultzpl =
-                                            await MemoryHotelApiGroup
-                                                .apiAuthenticationLoginPOSTCall
-                                                .call(
-                                          email: _model
-                                              .emailAddressTextController.text,
-                                          password: _model
-                                              .passwordTextController.text,
-                                        );
-
                                         context.pushNamed(
                                             HomepageWidget.routeName);
-
-                                        safeSetState(() {});
                                       },
                                       text: 'Đăng nhập',
                                       options: FFButtonOptions(
@@ -620,7 +606,7 @@ class _SignInWidgetState extends State<SignInWidget>
                                       onPressed: () {
                                         print('Button pressed ...');
                                       },
-                                      text: 'Continue with Google',
+                                      text: 'Đăng nhập với Google',
                                       icon: FaIcon(
                                         FontAwesomeIcons.google,
                                         size: 18.0,
@@ -682,7 +668,7 @@ class _SignInWidgetState extends State<SignInWidget>
                                       onPressed: () {
                                         print('Button pressed ...');
                                       },
-                                      text: 'Continue with Apple',
+                                      text: 'Đăng nhập với Apple',
                                       icon: Icon(
                                         Icons.apple_sharp,
                                         size: 24.0,

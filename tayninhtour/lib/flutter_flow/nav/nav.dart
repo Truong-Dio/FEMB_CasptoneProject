@@ -66,6 +66,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: ProfilePageWidget.routeName,
           path: ProfilePageWidget.routePath,
           builder: (context, params) => ProfilePageWidget(),
+        ),
+        FFRoute(
+          name: HomeWidget.routeName,
+          path: HomeWidget.routePath,
+          builder: (context, params) => HomeWidget(),
+        ),
+        FFRoute(
+          name: TermsPageWidget.routeName,
+          path: TermsPageWidget.routePath,
+          builder: (context, params) => TermsPageWidget(),
+        ),
+        FFRoute(
+          name: SendCVAppWidget.routeName,
+          path: SendCVAppWidget.routePath,
+          builder: (context, params) => SendCVAppWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

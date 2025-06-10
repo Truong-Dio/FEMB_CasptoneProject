@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -9,6 +8,7 @@ import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'signup_model.dart';
 export 'signup_model.dart';
 
@@ -77,6 +77,8 @@ class _SignupWidgetState extends State<SignupWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -88,12 +90,6 @@ class _SignupWidgetState extends State<SignupWidget>
           width: double.infinity,
           height: double.infinity,
           decoration: BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: Image.asset(
-                'assets/images/56fa568b0e3a5d72c5e8a95b84207622.jpg',
-              ).image,
-            ),
             gradient: LinearGradient(
               colors: [Color(0x801ABAEC), Color(0xFF2D26E3)],
               stops: [0.0, 1.0],
@@ -778,6 +774,7 @@ class _SignupWidgetState extends State<SignupWidget>
                                                   .bodyMedium
                                                   .fontStyle,
                                         ),
+                                    keyboardType: TextInputType.visiblePassword,
                                     cursorColor:
                                         FlutterFlowTheme.of(context).primary,
                                     validator: _model.textController3Validator
@@ -1051,13 +1048,14 @@ class _SignupWidgetState extends State<SignupWidget>
                                   ),
                                   Container(
                                     width: double.infinity,
-                                    height: 47.5,
+                                    height: 50.0,
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      borderRadius: BorderRadius.circular(12.0),
+                                      borderRadius: BorderRadius.circular(8.0),
                                       border: Border.all(
-                                        color: Colors.black,
+                                        color: FlutterFlowTheme.of(context)
+                                            .alternate,
                                         width: 1.0,
                                       ),
                                     ),
@@ -1088,7 +1086,8 @@ class _SignupWidgetState extends State<SignupWidget>
                                                           m.storagePath,
                                                           context))) {
                                                 safeSetState(() => _model
-                                                    .isDataUploading = true);
+                                                        .isDataUploading_uploadStudentCard =
+                                                    true);
                                                 var selectedUploadedFiles =
                                                     <FFUploadedFile>[];
 
@@ -1113,14 +1112,14 @@ class _SignupWidgetState extends State<SignupWidget>
                                                               ))
                                                           .toList();
                                                 } finally {
-                                                  _model.isDataUploading =
+                                                  _model.isDataUploading_uploadStudentCard =
                                                       false;
                                                 }
                                                 if (selectedUploadedFiles
                                                         .length ==
                                                     selectedMedia.length) {
                                                   safeSetState(() {
-                                                    _model.uploadedLocalFile =
+                                                    _model.uploadedLocalFile_uploadStudentCard =
                                                         selectedUploadedFiles
                                                             .first;
                                                   });
@@ -1131,121 +1130,144 @@ class _SignupWidgetState extends State<SignupWidget>
                                               }
                                             },
                                             child: Icon(
-                                              Icons.cloud_upload_rounded,
+                                              Icons.cloud_upload,
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
                                               size: 24.0,
                                             ),
                                           ),
-                                          if ((_model.uploadedLocalFile.bytes
-                                                      ?.isNotEmpty ??
-                                                  false))
-                                            Expanded(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 7.0, 0.0, 0.0),
-                                                child: Container(
-                                                  width: 200.0,
-                                                  child: TextFormField(
-                                                    controller: _model
-                                                        .uploadPhottTextController,
-                                                    focusNode: _model
-                                                        .uploadPhottFocusNode,
-                                                    autofocus: false,
-                                                    obscureText: false,
-                                                    decoration: InputDecoration(
-                                                      isDense: true,
-                                                      hintText:
-                                                          'Tải ảnh của bạn để xác thực',
-                                                      hintStyle:
+                                          Expanded(
+                                            child: Container(
+                                              width: 200.0,
+                                              child: TextFormField(
+                                                controller: _model
+                                                    .uploadPhottTextController,
+                                                focusNode:
+                                                    _model.uploadPhottFocusNode,
+                                                autofocus: false,
+                                                obscureText: false,
+                                                decoration: InputDecoration(
+                                                  isDense: true,
+                                                  labelStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .labelMedium
+                                                      .override(
+                                                        font: GoogleFonts.inter(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .fontStyle,
+                                                      ),
+                                                  hintText:
+                                                      valueOrDefault<String>(
+                                                    FFAppState().photoUploaded,
+                                                    'Please upload your avatar',
+                                                  ),
+                                                  hintStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .labelMedium
+                                                      .override(
+                                                        font: GoogleFonts.inter(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .labelMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .fontStyle,
+                                                      ),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color: Color(0x00000000),
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color: Color(0x00000000),
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                  errorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                font:
-                                                                    GoogleFonts
-                                                                        .roboto(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                                color: Color(
-                                                                    0xFFA2A7B3),
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                              ),
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color:
-                                                              Color(0x00000000),
-                                                          width: 1.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color:
-                                                              Color(0x00000000),
-                                                          width: 1.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
-                                                      errorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
                                                               .error,
-                                                          width: 1.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
-                                                      focusedErrorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error,
-                                                          width: 1.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
-                                                      filled: true,
-                                                      fillColor: FlutterFlowTheme
-                                                              .of(context)
-                                                          .secondaryBackground,
+                                                      width: 1.0,
                                                     ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                  focusedErrorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide: BorderSide(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                      width: 1.0,
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                  filled: true,
+                                                  fillColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryBackground,
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
                                                         .bodyMedium
                                                         .override(
-                                                          font: GoogleFonts
-                                                              .roboto(
+                                                          font:
+                                                              GoogleFonts.inter(
                                                             fontWeight:
                                                                 FlutterFlowTheme.of(
                                                                         context)
@@ -1269,19 +1291,15 @@ class _SignupWidgetState extends State<SignupWidget>
                                                                   .bodyMedium
                                                                   .fontStyle,
                                                         ),
-                                                    textAlign: TextAlign.start,
-                                                    maxLines: null,
-                                                    cursorColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .primaryText,
-                                                    validator: _model
-                                                        .uploadPhottTextControllerValidator
-                                                        .asValidator(context),
-                                                  ),
-                                                ),
+                                                cursorColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                validator: _model
+                                                    .uploadPhottTextControllerValidator
+                                                    .asValidator(context),
                                               ),
                                             ),
+                                          ),
                                         ].divide(SizedBox(width: 12.0)),
                                       ),
                                     ),
@@ -1303,18 +1321,9 @@ class _SignupWidgetState extends State<SignupWidget>
                                   FFAppState().userPassword =
                                       _model.textController3.text;
                                   safeSetState(() {});
-                                  _model.apiResult19e =
-                                      await MemoryHotelApiGroup
-                                          .apiAuthenticationRegisterPOSTCall
-                                          .call(
-                                    email: _model.textController4.text,
-                                    password: _model.textController3.text,
-                                    name: _model.textController1.text,
-                                    phoneNumber: _model.textController2.text,
-                                    avatar: _model.uploadedLocalFile,
-                                  );
 
-                                  safeSetState(() {});
+                                  context.pushNamed(
+                                      VerificationOTPWidget.routeName);
                                 },
                                 text: 'Hoàn tất đăng kí',
                                 options: FFButtonOptions(

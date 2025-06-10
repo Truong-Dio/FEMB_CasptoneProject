@@ -1,11 +1,13 @@
+import '/components/logout/logout_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'profile_page_model.dart';
 export 'profile_page_model.dart';
 
@@ -95,6 +97,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -171,7 +175,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                           alignment:
                                               AlignmentDirectional(0.06, -0.98),
                                           child: Text(
-                                            'PROFLIE',
+                                            FFAppState().userFullName,
                                             textAlign: TextAlign.center,
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -221,7 +225,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                             child: Align(
                               alignment: AlignmentDirectional(0.0, 0.0),
                               child: Text(
-                                '',
+                                FFAppState().userPhone,
                                 textAlign: TextAlign.center,
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
@@ -294,8 +298,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                             ),
-                            child: SvgPicture.asset(
-                              'assets/images/19.svg',
+                            child: Image.asset(
+                              'assets/images/TNDT_Logo.png',
                               fit: BoxFit.fitWidth,
                             ),
                           ),
@@ -639,86 +643,128 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                       ),
                       Align(
                         alignment: AlignmentDirectional(0.0, 0.6),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              20.0, 0.0, 20.0, 16.0),
-                          child: Container(
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context)
-                                  .secondaryBackground,
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 16.0,
-                                  color:
-                                      FlutterFlowTheme.of(context).shadowColor,
-                                  offset: Offset(
-                                    0.0,
-                                    4.0,
-                                  ),
-                                )
-                              ],
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 16.0, 16.0, 16.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(0.0),
-                                    child: SvgPicture.asset(
-                                      'assets/images/logout.svg',
-                                      width: 24.0,
-                                      height: 24.0,
-                                      fit: BoxFit.contain,
-                                      alignment: Alignment(0.0, 0.0),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          16.0, 0.0, 0.0, 0.0),
-                                      child: Text(
-                                        'Logout',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.roboto(
-                                                fontWeight: FontWeight.normal,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                              fontSize: 17.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.normal,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                              lineHeight: 1.5,
-                                            ),
+                        child: Builder(
+                          builder: (context) => Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                20.0, 0.0, 20.0, 16.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                await showDialog(
+                                  context: context,
+                                  builder: (dialogContext) {
+                                    return Dialog(
+                                      elevation: 0,
+                                      insetPadding: EdgeInsets.zero,
+                                      backgroundColor: Colors.transparent,
+                                      alignment: AlignmentDirectional(0.0, 0.0)
+                                          .resolve(Directionality.of(context)),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          FocusScope.of(dialogContext)
+                                              .unfocus();
+                                          FocusManager.instance.primaryFocus
+                                              ?.unfocus();
+                                        },
+                                        child: LogoutWidget(
+                                          onTapLogout: () async {
+                                            context.goNamed(
+                                                SignInWidget.routeName);
+                                          },
+                                        ),
                                       ),
-                                    ),
+                                    );
+                                  },
+                                );
+                              },
+                              child: Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 16.0,
+                                      color: FlutterFlowTheme.of(context)
+                                          .shadowColor,
+                                      offset: Offset(
+                                        0.0,
+                                        4.0,
+                                      ),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 16.0, 16.0, 16.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(0.0),
+                                        child: SvgPicture.asset(
+                                          'assets/images/logout.svg',
+                                          width: 24.0,
+                                          height: 24.0,
+                                          fit: BoxFit.contain,
+                                          alignment: Alignment(0.0, 0.0),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 0.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Logout',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.roboto(
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  fontSize: 17.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.normal,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .bodyMedium
+                                                          .fontStyle,
+                                                  lineHeight: 1.5,
+                                                ),
+                                          ),
+                                        ),
+                                      ),
+                                      ClipRRect(
+                                        borderRadius:
+                                            BorderRadius.circular(0.0),
+                                        child: SvgPicture.asset(
+                                          'assets/images/arrow_right.svg',
+                                          width: 20.0,
+                                          height: 20.0,
+                                          fit: BoxFit.contain,
+                                          alignment: Alignment(0.0, 0.0),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(0.0),
-                                    child: SvgPicture.asset(
-                                      'assets/images/arrow_right.svg',
-                                      width: 20.0,
-                                      height: 20.0,
-                                      fit: BoxFit.contain,
-                                      alignment: Alignment(0.0, 0.0),
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
-                            ),
-                          ).animateOnPageLoad(
-                              animationsMap['containerOnPageLoadAnimation4']!),
+                            ).animateOnPageLoad(animationsMap[
+                                'containerOnPageLoadAnimation4']!),
+                          ),
                         ),
                       ),
                       Align(
@@ -783,8 +829,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           0.0),
-                                                  child: SvgPicture.asset(
-                                                    'assets/images/13.svg',
+                                                  child: Image.asset(
+                                                    'assets/images/TNDT_Logo.png',
                                                     width: 24.0,
                                                     height: 24.0,
                                                     fit: BoxFit.contain,
@@ -876,8 +922,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                               Radius.circular(
                                                                   0.0),
                                                         ),
-                                                        child: SvgPicture.asset(
-                                                          'assets/images/15.svg',
+                                                        child: Image.asset(
+                                                          'assets/images/TNDT_Logo.png',
                                                           width: 24.0,
                                                           height: 24.0,
                                                           fit: BoxFit.contain,
@@ -927,66 +973,6 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                   Expanded(
                                     child: Align(
                                       alignment: AlignmentDirectional(0.0, 0.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 2.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 3.0, 0.0, 0.0),
-                                              child: InkWell(
-                                                splashColor: Colors.transparent,
-                                                focusColor: Colors.transparent,
-                                                hoverColor: Colors.transparent,
-                                                highlightColor:
-                                                    Colors.transparent,
-                                                onTap: () async {
-                                                  _model.scanQrNav =
-                                                      await FlutterBarcodeScanner
-                                                          .scanBarcode(
-                                                    '#C62828', // scanning line color
-                                                    'Cancel', // cancel button text
-                                                    true, // whether to show the flash icon
-                                                    ScanMode.QR,
-                                                  );
-
-                                                  safeSetState(() {});
-                                                },
-                                                child: Container(
-                                                  width: 36.0,
-                                                  height: 36.0,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .success,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            16.0),
-                                                  ),
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            16.0),
-                                                    child: SvgPicture.asset(
-                                                      'assets/images/S_20.svg',
-                                                      width: 32.0,
-                                                      height: 32.0,
-                                                      fit: BoxFit.cover,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -1024,8 +1010,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(0.0),
-                                                        child: SvgPicture.asset(
-                                                          'assets/images/17.svg',
+                                                        child: Image.asset(
+                                                          'assets/images/TNDT_Logo.png',
                                                           width: 24.0,
                                                           height: 24.0,
                                                           fit: BoxFit.contain,
@@ -1112,9 +1098,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                                               BorderRadius
                                                                   .circular(
                                                                       0.0),
-                                                          child:
-                                                              SvgPicture.asset(
-                                                            'assets/images/18.svg',
+                                                          child: Image.asset(
+                                                            'assets/images/TNDT_Logo.png',
                                                             width: 22.0,
                                                             height: 22.0,
                                                             fit: BoxFit.contain,

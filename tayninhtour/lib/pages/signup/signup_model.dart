@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'signup_widget.dart' show SignupWidget;
@@ -32,16 +31,14 @@ class SignupModel extends FlutterFlowModel<SignupWidget> {
   FocusNode? textFieldFocusNode4;
   TextEditingController? textController4;
   String? Function(BuildContext, String?)? textController4Validator;
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
+  bool isDataUploading_uploadStudentCard = false;
+  FFUploadedFile uploadedLocalFile_uploadStudentCard =
       FFUploadedFile(bytes: Uint8List.fromList([]));
 
   // State field(s) for UploadPhott widget.
   FocusNode? uploadPhottFocusNode;
   TextEditingController? uploadPhottTextController;
   String? Function(BuildContext, String?)? uploadPhottTextControllerValidator;
-  // Stores action output result for [Backend Call - API (/api/Authentication/register POST)] action in Button widget.
-  ApiCallResponse? apiResult19e;
 
   @override
   void initState(BuildContext context) {
